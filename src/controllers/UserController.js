@@ -24,6 +24,9 @@ module.exports = {
     async update(req, res){
         const user = await User.findOneAndUpdate(req.param.id, req.body, {new: true});
 
+        if(user == null){
+            return res.status(404).send('user not found');
+        }
         return res.json(user);
     },
 
