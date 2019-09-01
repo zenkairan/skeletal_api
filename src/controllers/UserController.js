@@ -72,7 +72,9 @@ module.exports = {
             }else{
                 if(user.facebookId == req.body.facebookId){
                     //usuário logou corretamente com o facebook
-                    return res.json(user);
+                    //atualiza os dados de acordo com o facebook
+                    const newUser = await User.findOneAndUpdate(user._id, req.body, {new: true});
+                    return res.json(newUser);
                 }else{
                     //usuário logou com facebook diferente do já cadastrado
                     return res.status(403).send('Social credentials do not match');
