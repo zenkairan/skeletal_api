@@ -73,7 +73,7 @@ module.exports = {
                 if(user.facebookId == req.body.facebookId){
                     //usuário logou corretamente com o facebook
                     //atualiza os dados de acordo com o facebook
-                    const newUser = await User.findOneAndUpdate(user._id, req.body, {new: true});
+                    const newUser = await User.findOneAndUpdate(user._id, {picture: req.body.picture}, {new: true});
                     return res.json(newUser);
                 }else{
                     //usuário logou com facebook diferente do já cadastrado
